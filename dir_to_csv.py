@@ -26,15 +26,16 @@ def list_files_in_directory(directory):
         # Open the CSV file for writing
         with open(output_file, 'w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(['File Name', 'File Type', 'Size (bytes)'])  # Header row
+            writer.writerow(['Folder', 'File Name', 'File Type', 'Size (bytes)'])  # Header row
             
             # Walk through the user-provided directory
             for root, dirs, files in os.walk(directory):
                 for filename in files:
                     filepath = os.path.join(root, filename)
+                    folder = root.split(directory)[-1]
                     file_extension = os.path.splitext(filename)[1]
                     file_size = os.path.getsize(filepath)
-                    writer.writerow([filename, file_extension, file_size])
+                    writer.writerow([folder, filename, file_extension, file_size])
                     
         print(f"CSV file has been created: {output_file}")
     except Exception as e:
