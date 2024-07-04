@@ -12,6 +12,11 @@ def csvToDict(csv_file: str) -> dict:
     with open(csv_file, 'r') as file:
         csv_reader = csv.reader(file)
         for row in csv_reader:
-            if len(row) == 2 and row[0].isdigit():
-                result_dict[row[0]] = row[1]
+            result_dict[row[0]] = row[1]
         return result_dict
+
+
+def listToCSV(filename: str, data: list) -> None:
+    with open(filename, 'w') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(data)
