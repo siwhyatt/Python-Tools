@@ -1,8 +1,8 @@
 import os
 import csv
-from helpers import GetArgument
 
 def write_filenames_to_csv(root_directory, output_file):
+    # Recursively write directory subfolder and file namess to a csv
     with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(['Folder', 'Filename'])  # Write header
@@ -14,9 +14,14 @@ def write_filenames_to_csv(root_directory, output_file):
 
     print(f"Filenames have been written to {output_file}")
 
-# Get folder name
-folder_name = GetArgument("Choose folder: ", 1)
-root_directory = f"../../{folder_name}"
-output_file = GetArgument("Output filename", 2)
 
-write_filenames_to_csv(root_directory, output_file)
+def main():
+    # Get folder name
+    root_directory = os.getcwd()
+    output_file = 'folder_names.csv'
+
+    write_filenames_to_csv(root_directory, output_file)
+
+
+if __name__ == '__main__':
+    main()

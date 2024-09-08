@@ -1,4 +1,5 @@
 # NOTE: Function to count the files in directory and subfolders
+# Run with "countfiles" command from within parent directory
 
 import os
 import csv
@@ -43,20 +44,8 @@ def list_subfolders_with_file_counts(directory: str) -> None:
         print(f"Error: {e}")
 
 def main():
-    if len(sys.argv) > 1:
-        # Use the absolute path directly if provided via command line
-        directory = sys.argv[1]
-        list_subfolders_with_file_counts(directory)
-    else:
-        # Interactive mode: ask the user to input the directory path
-        while True:
-            user_input_directory = input("Enter the directory path (or type 'exit' to quit): ")
-            if user_input_directory.lower() == 'exit':
-                break
-            # Use the path as is if it's absolute, otherwise join it with the current working directory
-            if not os.path.isabs(user_input_directory):
-                user_input_directory = os.path.join(os.getcwd(), user_input_directory)
-            list_subfolders_with_file_counts(user_input_directory)
+    directory = os.getcwd()
+    list_subfolders_with_file_counts(directory)
 
 if __name__ == "__main__":
     main()
