@@ -3,7 +3,6 @@
 
 import os
 import csv
-import sys
 
 def list_subfolders_with_file_counts(directory: str) -> None:
     """ This function takes a directory path and writes a CSV file with subfolders and their file counts.
@@ -35,7 +34,7 @@ def list_subfolders_with_file_counts(directory: str) -> None:
                 for subfolder in dirs:
                     subfolder_path = os.path.join(root, subfolder)
                     subfolder = subfolder
-                    sku = subfolder.split(" ")[0]
+                    sku = subfolder.split("_")[0]
                     file_count = sum(len(files) for _, _, files in os.walk(subfolder_path))
                     writer.writerow([sku, subfolder, file_count])
                     
