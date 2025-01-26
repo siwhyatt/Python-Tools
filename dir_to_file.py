@@ -126,7 +126,8 @@ def scrape_directory(directory_path, output_file, additional_excluded_folders=No
 def main():
     # Example usage
     directory_to_scrape = os.getcwd()
-    output_file_path = f"{directory_to_scrape}_content.txt"
+    folder = directory_to_scrape.split("/")
+    output_file_path = f"/home/siwhyatt/Downloads/{folder[-1]}_content.txt"
     
     # Optional: Add more folders or extensions to exclude
     # These will be added to the default exclusions, not replace them
