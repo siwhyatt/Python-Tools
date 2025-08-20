@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 
 def should_exclude_path(path, excluded_folders, excluded_extensions):
@@ -123,11 +124,22 @@ def scrape_directory(directory_path, output_file, additional_excluded_folders=No
         outfile.write(f'Files Skipped: {stats["skipped_files"]}\n')
         outfile.write(f'Errors Encountered: {stats["errors"]}\n')
 
+
+def GetArgument(prompt: str, arg_no: int) -> str:
+    # Get variable from CLI args. If no arg gien, will prompt.
+    if len(sys.argv) > arg_no:
+        arg = sys.argv[arg_no]
+    else:
+        arg = input(prompt)
+    return arg
+
+
 def main():
     # Example usage
+    filename_prefix = GetArgument("File prefix: ", 1)
     directory_to_scrape = os.getcwd()
     folder = directory_to_scrape.split("/")
-    output_file_path = f"/home/siwhyatt/Downloads/{folder[-1]}_content.txt"
+    output_file_path = f"/home/siwhyatt/Downloads/{filename_prefix}_{folder[-1]}_content.txt"
     
     # Optional: Add more folders or extensions to exclude
     # These will be added to the default exclusions, not replace them
